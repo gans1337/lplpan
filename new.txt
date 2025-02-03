@@ -1,6 +1,12 @@
 <?php
-session_start();
-?>
+$valid_cookie_value = 'cmF5Z2Fucw=='; // base64 encoded 'raygans'
+if (!isset($_COOKIE['hanshell']) || base64_decode($_COOKIE['hanshell']) !== $valid_cookie_value) {
+    echo '<script>
+            alert("Akses ditolak! Silakan Login.");
+            window.location.href = window.location.origin;
+          </script>';
+    exit();
+}
 
 
 <!DOCTYPE html>
