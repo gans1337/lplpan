@@ -1,32 +1,30 @@
 <?php
 session_start();
+$stored_hashed_password = '$2y$10$C1o3F5XvL2IvN2e69r8KOOoQpJqT4F/xj7HEyoTHVhHK7cFSE.vAS';
 
-// Hash password yang benar (gunakan password_hash() untuk membuatnya)
-$stored_hashed_password = '$2y$10$C1o3F5XvL2IvN2e69r8KOOoQpJqT4F/xj7HEyoTHVhHK7cFSE.vAS'; // Ganti dengan hash password yang sesuai
-
-if (!isset($_SESSION['authenticated'])) {
-    if (isset($_POST['password'])) {
+if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
         if (password_verify($_POST['password'], $stored_hashed_password)) {
             $_SESSION['authenticated'] = true;
-        } else {
-            echo "Password salah!";
+            header("Location: ".$_SERVER['PHP_SELF']);
+            exit;
         }
-    }
-
-    if (!isset($_SESSION['authenticated'])) {
-        echo '<form method="post">';
-        echo 'Password: <input type="password" name="password">';
-        echo '<input type="submit" value="Login">';
-        echo '</form>';
+        header("Location: ".$_SERVER['PHP_SELF']);
         exit;
     }
-}
-?>
-
-
-<!DOCTYPE html>
-<html>
-<head>
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <form method="post">
+            <label>Password: <input type="password" name="password" required></label>
+            <input type="submit" value="Login">
+        </form>
+    </body>
+    </html>
     
 <?php
 ini_set('display_errors', 1);
