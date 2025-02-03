@@ -25,6 +25,10 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
         </form>
     </body>
     </html>
+    <?php
+    exit;
+}
+?>
     
 <?php
 ini_set('display_errors', 1);
