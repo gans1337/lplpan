@@ -1,10 +1,11 @@
 <?php
 session_start();
-$ewean = '7977a845aee750455f790d8be3835e88da205f87';
+$hashed_password = '$2y$10$YIj66lKTxHFLiEZRmQRuCzeo5D6YX6JtGS0INH22n2jG.Rg5qO.ZO'; // Hash untuk password 'password123'
 
 if (!isset($_SESSION['authenticated'])) {
     if (isset($_POST['password'])) {
-        if (sha1(md5($_POST['password'])) === $ewean) {
+        // Verifikasi password menggunakan password_verify
+        if (password_verify($_POST['password'], $hashed_password)) {
             $_SESSION['authenticated'] = true;
         } else {
             echo "Password salah!";
@@ -20,6 +21,7 @@ if (!isset($_SESSION['authenticated'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
