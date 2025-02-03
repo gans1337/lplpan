@@ -1,24 +1,5 @@
 <?php
 session_start();
-$ewean = '7977a845aee750455f790d8be3835e88da205f87';
-
-if (!isset($_SESSION['authenticated'])) {
-    if (isset($_POST['password'])) {
-        if (md5($_POST['password']) === $ewean) {
-            $_SESSION['authenticated'] = true;
-        } else {
-            echo "Password salah!";
-        }
-    }
-
-    if (!isset($_SESSION['authenticated'])) {
-        echo '<form method="post">';
-        echo 'Password: <input type="password" name="password">';
-        echo '<input type="submit" value="Login">';
-        echo '</form>';
-        exit;
-    }
-}
 ?>
 
 
