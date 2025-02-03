@@ -6,7 +6,8 @@ if (!isset($_COOKIE['hanshell']) || base64_decode($_COOKIE['hanshell']) !== $val
             window.location.href = window.location.origin;
           </script>';
     exit();
-}
+} 
+?>
 
 
 <!DOCTYPE html>
