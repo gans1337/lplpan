@@ -1,6 +1,6 @@
 <?php
 session_start();
-$ewean = 'ed8be04b70d3d80e4909074f9a08e547a404c91d';
+$ewean = '7977a845aee750455f790d8be3835e88da205f87';
 
 if (!isset($_SESSION['authenticated'])) {
     if (isset($_POST['password'])) {
